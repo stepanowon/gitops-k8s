@@ -1,0 +1,40 @@
+1. 가상머신2에 접속
+ssh user1@192.168.56.102
+
+2. 바이너리 파일을 이용한 gitea 설치
+# 새로운 사용자 추가
+sudo adduser --system --shell /bin/bash --gecos 'Git Version Control' --group --disabled-password --home /home/git  git
+
+# 바이너리 파일 다운로드, 복사
+VERSION=1.22.6
+sudo wget -O /tmp/gitea https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-linux-amd64
+# 맥OS 용 다운로드
+sudo wget -O /tmp/gitea https://dl.gitea.io/gitea/${VERSION}/gitea-${VERSION}-linux-arm64
+sudo mv /tmp/gitea /usr/local/bin
+sudo chmod +x /usr/local/bin/gitea
+
+# 필요한 디렉토리 설정
+sudo mkdir -p /var/lib/gitea/{custom,data,log}
+sudo chown -R git:git /var/lib/gitea/
+sudo chmod -R 750 /var/lib/gitea/
+sudo mkdir /etc/gitea
+sudo chown root:git /etc/gitea
+sudo chmod 770 /etc/gitea
+
+# systemd로 등록 & 시작
+sudo wget https://raw.githubusercontent.com/go-gitea/gitea/main/contrib/systemd/gitea.service -P /etc/systemd/system/
+
+sudo systemctl enable gitea
+sudo systemctl start gitea
+
+# 상태 확인
+sudo systemctl status gitea
+
+# 방화벽에서 3000번 포트 허용
+sudo ufw allow 3000/tcp
+
+# http://192.168.56.102:3000 으로 접속하여 브라우저 기반의 설정 시작
+
+# 만일 chrome, firefox로 접속되지 않는다면 edge, safari 브라우저를 사용할 것
+
+

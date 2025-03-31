@@ -1,0 +1,15 @@
+cd ~
+mkdir vms && cd vms
+git clone https://github.com/stepanowon/ubuntu-on-win
+cd ubuntu-on-win
+vagrant up
+
+# 모두 설치 후 리로딩
+vagrant reload
+
+# 각 가상머신에 접속하여 다음 명령어 실행
+# 사용자 계정 / 패스워드 --> user1/asdf
+# 가상머신 접속 방법 : ssh user1@192.168.56.101~103
+
+# 다음 스크립트는 윈도우인 경우에만 실행함
+sudo apt install virtualbox-ext-pack -y

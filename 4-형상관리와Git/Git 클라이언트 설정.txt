@@ -1,0 +1,11 @@
+1. 글로벌 사용자 이름, Email 설정, 에디터 등 설정(로컬 PC, Cloud9 모두 수행)
+git config --global user.name "stephenwon"
+git config --global user.email "stepanowon@kakao.com"
+git config --global core.editor "vim"
+
+git config --global init.defaultBranch main
+
+
+2. 자격증명 저장
+git config --global credential.helper store
+

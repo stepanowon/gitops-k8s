@@ -1,0 +1,19 @@
+1. kubectl
+  - https://dl.k8s.io/release/v1.30.8/bin/windows/amd64/kubectl.exe
+
+2. argocd CLI
+  - 다음 경로에서 윈도우용 실행 파일 다운로드
+    https://github.com/argoproj/argo-cd/releases/tag/v2.13.2
+  - 파일명을 argo.exe 로 변경
+
+3. kubectl argo rollout 다운로드
+  - 다음 경로에서 다운로드
+    https://github.com/argoproj/argo-rollouts/releases/latest/download/kubectl-argo-rollouts-windows-amd64
+  - 파일명을 kubectl-argo-rollouts.exe로 변경
+
+4. helm
+  - 다음 경로에서 windows amd64 용 압축파일 다운로드
+    https://github.com/helm/helm/releases
+  - 압축을 풀고 helm.exe 파일을 사용
+
+**다운로드 받은 파일을 하나의 디렉토리로 모은 뒤 path 환경 변수에 등록
