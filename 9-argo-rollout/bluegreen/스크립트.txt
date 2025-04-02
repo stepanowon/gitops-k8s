@@ -1,0 +1,31 @@
+## 서비스 시작
+kubectl apply -f service-active.yaml
+kubectl apply -f service-preview.yaml
+
+# external-ip 파악
+kubectl get service
+
+## rollout-bluegreen.yaml 실행
+kubectl apply -f rollout-bluegreen.yaml
+
+## 모니터링
+kubectl argo rollouts get rollout rollout-bluegreen --watch
+
+## 이미지를 green 버전으로 변경
+kubectl argo rollouts set image rollout-bluegreen rollout-bluegreen=argoproj/rollouts-demo:green
+
+## 새버전으로 프로모팅
+kubectl argo rollouts promote rollout-bluegreen
+
+## 특정 버전으로 롤백
+kubectl argo rollouts undo rollout-bluegreen  --to-revision=1
+
+## 리소스 정리
+kubectl delete -f service-active.yaml
+kubectl delete -f service-preview.yaml  
+kubectl delete -f rollout-bluegreen.yaml
+
+
+
+
+

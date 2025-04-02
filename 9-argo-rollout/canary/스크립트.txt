@@ -1,0 +1,21 @@
+## canary 앱 배포
+kubectl apply -f service.yaml
+kubectl apply -f rollout.yaml
+
+## 터미널 수준 모니터링
+kubectl argo rollouts get rollout rollouts-demo --watch
+
+
+## 이미지 업데이트 후 모니터링 확인
+kubectl argo rollouts set image rollouts-demo rollouts-demo=argoproj/rollouts-demo:green
+
+## 다음 배포 step으로 즉시 Promotion
+kubectl argo rollouts promote rollouts-demo
+
+## Rollout 중단
+kubectl argo rollouts abort rollouts-demo
+
+## 리소스 정리
+kubectl delete -f rollout.yaml
+kubectl delete -f service.yaml
+
