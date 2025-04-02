@@ -11,3 +11,6 @@ sudo mv ./kubectl-argo-rollouts-linux-amd64  /usr/local/bin/kubectl-argo-rollout
 kubectl argo rollouts version
 
 
+## argo rollout 삭제
+kubectl delete -n argo-rollouts -f https://github.com/argoproj/argo-rollouts/releases/latest/download/install.yaml
+kubectl delete namespace argo-rollouts
