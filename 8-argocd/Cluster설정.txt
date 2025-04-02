@@ -1,0 +1,4 @@
+CURRENT_CONTEXT=`kubectl config view -o jsonpath='{.current-context}'`
+argocd cluster add $CURRENT_CONTEXT
+
+

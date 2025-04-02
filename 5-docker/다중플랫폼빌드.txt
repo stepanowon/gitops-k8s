@@ -1,0 +1,9 @@
+docker buildx ls
+
+docker buildx create --name multi-platform-builder --driver docker-container --bootstrap --use
+
+docker buildx build  .  --platform linux/arm64,linux/amd64  -t  stepanowon/nodeapp:1.0.0 
+
+docker buildx build  .  --load  -t  stepanowon/nodeapp:1.0.0
+
+docker buildx build  . --platform linux/arm64,linux/amd64 -t  stepanowon/nodeapp:1.0.0  --push 

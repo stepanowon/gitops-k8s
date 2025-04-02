@@ -1,0 +1,36 @@
+## Jenkins 설치
+sudo wget -O /usr/share/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+echo "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc]" \
+  https://pkg.jenkins.io/debian-stable binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+
+sudo apt update -y
+sudo apt install jenkins -y
+
+
+## docker 설치
+sudo apt update
+sudo apt-get install apt-transport-https ca-certificates curl
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+sudo add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable"
+
+sudo apt update 
+sudo apt install docker-ce docker-ce-cli containerd.io -y
+
+sudo usermod -a -G docker jenkins  
+
+sudo systemctl enable docker
+sudo systemctl start docker
+sudo chmod 666 /var/run/docker.sock 
+
+
+# Jenkins 초기 패스워드 획득
+sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+
+
+

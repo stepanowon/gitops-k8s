@@ -1,0 +1,49 @@
+## ArgoCD 설치
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+
+#ArgoCD를 외부에서 접속할 수 있도록 API 서버를 외부에 노출시켜야 함. 
+//이를 위해 Service Type을 LoadBalancer로 변경함
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+
+
+## ArgoCD CLI 도구 설치
+curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
+sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
+rm argocd-linux-amd64
+
+## admin 초기 패스워드 획득
+argocd admin initial-password -n argocd
+
+
+
+## 새로운 사용자 추가
+kubectl edit configmap argocd-cm -n argocd
+
+# 다음의 내용을 추가(들여쓰기 주의)
+data: 
+  accounts.user1: apiKey, login
+
+## 사용자 권한 설정
+kubectl edit configmap argocd-rbac-cm -n argocd
+
+# 편집할 내용
+data:
+  policy.csv: |
+    g, user1, role:admin
+  policy.default: role:''
+
+# 권한설정 참조 예시
+data:
+  policy.csv: |
+    g, user1, role:admin
+    g, user2, role:managers
+    p, role:managers, applications, get, */*, allow
+    p, role:managers, applications, update, */*, allow
+  policy.default: role.readonly     
+
+
+
+
+
+

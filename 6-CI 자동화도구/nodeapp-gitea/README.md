@@ -1,2 +1,0 @@
-# nodeapp-gitea
-

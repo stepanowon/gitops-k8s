@@ -1,0 +1,36 @@
+# 이미지 검색
+docker search node
+docker search --filter=stars=3 node
+
+#  이미지 다운로드
+docker pull node:22
+
+# 로컬에 존재하는 이미지 리스트 조회
+docker images
+
+# 컨테이너 실행
+docker run -d -p 8081:8080 --name nodeapp1 steopanowon/nodeapp:1.0.0
+
+# 컨테이너 리스트 확인
+docker ps 
+docker ps -a
+
+# 종료된 컨테이너 시작
+docker start nodeapp1
+
+# 컨테이너 중지
+docker stop nodeapp1
+
+# 컨테이너 kill
+docker kill nodeapp1
+
+# Docker 객체에 대한 저수준 정보 보기
+docker inspect nodeapp1
+
+# 컨테이너 삭제
+docker rm nodeapp1 ubuntu1
+
+# 컨테이너 이미지 삭제
+docker rmi nodeapp:1.0.0
+
+

@@ -1,0 +1,15 @@
+## gitea 설정 파일 위치 확인
+sudo find / -name "app.ini"
+
+## 웹훅을 허용할 젠킨스 서버 주소 등록후 재시작
+
+$ sudo vi /etc/gitea/app.ini
+
+...
+[webhook]
+ALLOWED_HOST_LIST = jenkins.aaa.com, 192.168.56.0/24
+
+# gitea 서버 재시작
+sudo systemctl restart gitea
+
+

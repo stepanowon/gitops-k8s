@@ -38,3 +38,23 @@ sudo ufw allow 3000/tcp
 # 만일 chrome, firefox로 접속되지 않는다면 edge, safari 브라우저를 사용할 것
 
 
+
+
+## gitea 설정 값
+
+# 데이터베이스 설정
+- 데이터베이스 유형 : PostgreSQL
+-호스트 : 192.168.56.103:5432
+- 이름(사용자명) : gitea
+- 비밀번호 : giteapwd
+- 데이터베이스 이름 : giteadb
+- 나머지 설정은 기본값으로
+# 기본 설정
+- 사이트 제목 : 임의의 이름 지정(예: 테스트 깃서버)
+- 실행사용자명 : git
+- 나머지는 기본값으로 지정
+# 관리자 계정 설정
+- 관리자 이름 : admin1
+- 이메일 주소 : admin1@test.com
+- 비밀번호 : admin1pwd
+

@@ -1,0 +1,15 @@
+# values-image-updater.yaml
+config:
+  argocd:
+    grpcWeb: true
+    serverAddress: "ARGOCD서버주소"    # 예시: 192.168.56.51,   'https://'는 지정하지 않음
+    insecure: true
+    plaintext: false
+  logLevel: debug
+  registries:     # Docker Hub는 이 설정 필요없음. Docker Hub가 아닌 레지스트리만 등록
+    - name: nexus1
+      api_url: "http://192.168.56.103:8082"
+      prefix:  "192.168.56.103:8082"
+      ping: true
+      insecure: false
+      credentials: "secret:argocd/nexus-cred"		# 형식 : "secret:네임스페이스/시크릿명"

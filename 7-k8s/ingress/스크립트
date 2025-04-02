@@ -1,0 +1,14 @@
+# ingress nginx controller 설치
+kubectl apply -f https://raw.githubusercontent.com/Kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/baremetal/deploy.yaml
+
+# ingress-nginx-controller의 Service Type을 LoadBalancer로 변경
+kubectl -n ingress-nginx patch service ingress-nginx-controller -p '{"spec":{"type":"LoadBalancer"}}'
+
+
+## 리소스 삭제
+kubectl delete -f nodeapp1.yaml
+kubectl delete -f nodeapp2.yaml
+kubectl delete -f nodeapp-ingress.yaml
+
+kubectl delete -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/baremetal/deploy.yaml
+

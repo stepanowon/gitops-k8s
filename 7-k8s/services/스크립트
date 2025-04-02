@@ -1,0 +1,25 @@
+### metalLB 설치 
+# kube-proxy의 strictARP 설정값을 true로 변경
+kubectl get configmap kube-proxy -n kube-system -o yaml | \
+  sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
+
+# yaml 파일을 이용해 metalLB 설치
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml
+
+# 설치된 metalLB 요소 확인. 모든 pod가 Running 상태가 되는 것을 확인
+$ kubectl get all -n metallb-system
+NAME                              READY   STATUS    RESTARTS      AGE
+pod/controller-6dd967fdc7-jdcgq   1/1     Running   0             34m
+pod/speaker-ftfwm                 1/1     Running   0             34m
+pod/speaker-vddww                 1/1     Running   0             34m
+pod/speaker-x72gz                 1/1     Running   0             34m
+
+
+# master 가상머신에 접속하여 실행
+kubectl apply -f  ~/vagrant/conf/ip-addr-pool.yaml
+
+
+### 리소스 삭제
+kubectl delete services nodeapp-lb
+kubectl delete deploy nodeapp-deploy
+

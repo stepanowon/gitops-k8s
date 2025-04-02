@@ -1,0 +1,19 @@
+# Docker 이미지 빌드
+docker build ./nodeapp -t nodeapp:1.0.0
+
+# 태깅
+docker tag nodeapp:1.0.0 stephenwon/nodeapp:1.0.0
+
+docker build . -t  stephenwon/nodeapp:1.0.0
+docker build . -t 192.168.56.101:8082/nodeapp:1.0.0
+
+# 다단계 빌드-이미지 빌드
+docker build  .  -t nodeapp:1.0.0
+docker build  .  -t nodeapp-slim:1.0.0
+docker build  .  -t nodeapp-slim2:1.0.0
+docker build  .  -t demosvc:1.0.0
+
+# 원격 리포지토리로 푸시
+docker tag  nodeapp:1.0.0  stephenwon/nodeapp:1.0.0
+docker push  stephenwon/nodeapp:1.0.0
+

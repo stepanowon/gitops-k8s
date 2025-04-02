@@ -1,0 +1,22 @@
+### test-job3.yaml
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-job3
+  namespace: default
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+      - name: test-job3
+        image: centos:8
+        command: ["bash"]
+        args:
+          - "-c"
+          - >-
+            echo 'Hello Job!' &&
+            sleep 60 &&
+            echoooo 'Completed!'
+  backoffLimit: 3        
+        

@@ -1,0 +1,18 @@
+VirtualBox 가상머신에서 다음 오류 발생시 대처 방법
+
+1. "watchdog: BUG: soft lockup ..."
+2. rcu: All QSes seen, last rcu_preempt kthread activity
+
+- 해결책1 : soft lock detection 기능을 비활성화
+ * 당장 적용을 위해 다음 명령 실행
+    sudo sh -c 'echo 0 > /proc/sys/kernel/softlockup_panic'
+    sudo sh -c 'echo 0 > /proc/sys/kernel/watchdog'
+ * 재부팅시 자동 적용을 위해 /etc/sysctl.conf 에 다음 설정 추가
+    kernel.softlockup_panic = 0
+    kernel.watchdog = 0
+
+- 해결책2 : 리소스(메모리, vcpu)를 늘려줌
+
+
+
+  

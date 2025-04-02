@@ -1,3 +1,4 @@
+## WSL2, Ubuntu에서 
 cd ~
 mkdir vms && cd vms
 git clone https://github.com/stepanowon/ubuntu-on-win

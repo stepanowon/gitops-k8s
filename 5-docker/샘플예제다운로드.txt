@@ -1,0 +1,5 @@
+mkdir ~/images && cd ~/images
+git clone https://github.com/stepanowon/nodeapp
+git clone https://github.com/stepanowon/nodeapp-slim
+git clone https://github.com/stepanowon/nodeapp-slim2
+git clone https://github.com/stepanowon/demosvc

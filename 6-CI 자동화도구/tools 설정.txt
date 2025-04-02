@@ -1,0 +1,20 @@
+## 파이프라인 스크립트
+
+pipeline {
+    agent any
+    tools {
+        nodejs 'node-20' 
+    }
+    stages {
+        stage('node 버전 확인') {
+            steps {
+                script {
+                    sh 'node --version'
+                }
+            }
+        }
+    }
+}
+
+
+

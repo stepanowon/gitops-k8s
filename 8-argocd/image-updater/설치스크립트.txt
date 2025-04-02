@@ -1,0 +1,58 @@
+## helm을 이용한 image updater 설치, 설정
+
+helm repo add argo https://argoproj.github.io/argo-helm
+helm repo update argo
+
+helm install argocd-image-updater argo/argocd-image-updater \
+--namespace argocd \
+--values values-image-updater.yaml
+
+
+# 스캔 시간 간격 설정
+kubectl edit deployment argocd-image-updater -n argocd
+
+# 다음 내용 편집 : 2m --> 10s
+     spec:
+       containers:
+       - args:
+         - run
+         - --interval
+         - 10s
+
+
+
+## docker image registry에 접근할 수 있는 자격증명 생성
+
+kubectl create secret docker-registry dockerhub-cred -n argocd \
+--docker-server=registry.docker.io \
+--docker-username=[도커허브사용자명]  \
+--docker-password=[도커허브토큰] 
+
+
+## clusters/mycluster/kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- nodeapp-deploy.yaml
+- nodeapp-svc.yaml
+
+
+## Application Annotation 설정값
+
+argocd-image-updater.argoproj.io/image-list = myapp=도커사용자명/nodeapp-git
+argocd-image-updater.argoproj.io/myapp.force-update = true 
+argocd-image-updater.argoproj.io/myapp.pull-secret = argocd/dockerhub-cred
+argocd-image-updater.argoproj.io/myapp.update-strategy = semver 
+argocd-image-updater.argoproj.io/write-back-method = argocd
+
+
+## argocd image updater 재시작
+kubectl rollout restart deployment argocd-image-updater -n argocd
+
+## argocd image updater 로그 조회
+kubectl logs -n argocd $(kubectl get pods -n argocd -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep argocd-image-updater)
+
+## 최근 2분간의 image updater 로그 조회
+kubectl logs -n argocd $(kubectl get pods -n argocd -o jsonpath="{.items[*].metadata.name}" | tr ' ' '\n' | grep argocd-image-updater) --since 2m
+
+

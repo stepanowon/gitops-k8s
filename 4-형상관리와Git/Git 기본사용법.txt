@@ -1,0 +1,49 @@
+## WSL2 Ubuntu 터미널에서
+
+cd ~
+mkdir -p git/testapp
+cd git/testapp
+
+
+
+# nano .gitignore
+
+.env
+node_modules
+/bin
+
+# 테스트1 : 이전 git init에 이어서
+- README.md, .env 파일 생성 후 간단한 내용을 임의로 작성
+  * git add . && git commit -m '첫번째 커밋'
+- a.txt 파일 추가하고 임의내용 작성
+  * git add . && git commit -m 'a.txt 파일 추가'
+- a.txt 파일 내용 변경 
+  * git add . && git commit -m 'a.txt 파일 변경'
+- git log --oneline
+
+
+# Fast-forward merge
+- git branch dev1 && git switch dev1
+- 새로운 파일 b.txt 생성 후 임의의 내용 작성
+- git add . && git commit -m 'b 추가'
+- b.txt 변경 후 git add . && git commit -m 'b 변경'
+- git switch main
+- git merge dev1
+
+# 3-way merge test
+- git branch dev2
+- git switch dev2
+- b.txt 내용 변경
+- git add . && git commit -m "b.txt 변경-dev2"
+- git switch main
+- b.txt 내용 변경(dev2에서와는 다르게)
+- git add . && git commit -m "b.txt 변경-main"
+- git merge dev2
+
+# 원격 리포지토리 정보 등록
+git remote add origin  http://192.168.56.102:3000/user1/testapp
+
+
+
+
+
