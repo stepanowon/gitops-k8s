@@ -8,9 +8,6 @@ kubectl get service
 ## rollout-bluegreen.yaml 실행
 kubectl apply -f rollout-bluegreen.yaml
 
-## 모니터링
-kubectl argo rollouts get rollout rollout-bluegreen --watch
-
 ## 이미지를 green 버전으로 변경
 kubectl argo rollouts set image rollout-bluegreen rollout-bluegreen=argoproj/rollouts-demo:green
 
