@@ -1,0 +1,21 @@
+### canary 수동 배포 테스트
+
+# deploy-v1의 replicas : 4
+kubectl apply -f svc.yaml
+kubectl apply -f deploy-v1.yaml
+
+# svc의 external-ip 확인하여 요청해봄
+curl 192.168.56.52
+
+# deploy-v2 배포 : replicas: 1
+kubectl apply -f deploy-v2.yaml
+
+# curl 192.168.56.52 요청하여 2.0.0의 비율이 대략 20%인 것 확인
+# 정상 작동 확인후 scale 변경 : 점진적 또는 일괄
+kubectl scale deploy/deploy-v2 --replicas=4
+kubectl scale deploy/deploy-v1 --replicas=0 
+
+# 리소스 정리
+kubectl delete -f svc.yaml
+kubectl delete -f deploy-v1.yaml
+kubectl delete -f deploy-v2.yaml

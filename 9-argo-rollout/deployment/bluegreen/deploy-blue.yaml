@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-blue
+  labels:
+    app: nodeapp-blue
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodeapp-blue
+  template:
+    metadata:
+      labels:
+        app: nodeapp-blue
+    spec:
+      containers:
+      - name: nodeapp
+        image: stepanowon/nodeapp:1.0.0
+        ports:
+        - containerPort: 80

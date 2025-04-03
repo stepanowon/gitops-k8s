@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-green
+  labels:
+    app: nodeapp-green
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: nodeapp-green
+  template:
+    metadata:
+      labels:
+        app: nodeapp-green
+    spec:
+      containers:
+      - name: nodeapp
+        image: stepanowon/nodeapp:2.0.0
+        ports:
+        - containerPort: 80
+

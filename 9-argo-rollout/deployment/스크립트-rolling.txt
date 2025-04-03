@@ -1,5 +1,4 @@
 ## rolling 배포 테스트
-
 kubectl apply -f rolling.yaml    
 
 kubectl set image deployment/nodeapp-deploy nodeapp=stepanowon/nodeapp:2.0.0  
@@ -19,6 +18,12 @@ kubectl rollout history deploy nodeapp-deploy --revision=1
 ## 특정 revision으로 롤백
 kubectl rollout undo deploy nodeapp-deploy --to-revision=1
 kubectl rollout history deploy nodeapp-deploy
+
+## 리소스 정리
+kubectl delete -f rolling.yaml
+
+-------------------------------
+
 
 
 
