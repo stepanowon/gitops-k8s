@@ -1,1 +1,15 @@
+1. kubectl
+# Homebrew 설치 : 설치되어 있지 않다면...
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# kubectl 설치
+brew install kubectl
+
+2. argocd CLI
+brew install argocd
+
+3. kubectl argo rollout 다운로드
+brew install argoproj/tap/kubectl-argo-rollouts
+
+4. helm
+brew install helm
 
