@@ -1,9 +1,9 @@
 1. kubectl
-  - https://dl.k8s.io/release/v1.30.8/bin/windows/amd64/kubectl.exe
+  - https://dl.k8s.io/release/v1.34.3/bin/windows/amd64/kubectl.exe
 
 2. argocd CLI
   - 다음 경로에서 윈도우용 실행 파일 다운로드
-    https://github.com/argoproj/argo-cd/releases/tag/v2.13.2
+    https://github.com/argoproj/argo-cd/releases/tag/v3.2.2
   - 파일명을 argo.exe 로 변경
 
 3. kubectl argo rollout 다운로드
