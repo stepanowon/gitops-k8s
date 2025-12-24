@@ -11,7 +11,7 @@
   * 변경사항을 적용하려면 다음 링크의 문서 참조
      * https://github.com/stepanowon/gitops-k8s/tree/main/8-argocd/image-updater/v1.x
 - 기존의 버전을 사용하려면
-  * helm 을 이용해 설치할 때 다음의 가이드와 같이 직접 변경을 지정합니다.
+  * helm 을 이용해 설치할 때 다음의 가이드와 같이 직접 버전을 지정합니다.
 ```
 helm repo add argo https://argoproj.github.io/argo-helm
 helm repo update argo
