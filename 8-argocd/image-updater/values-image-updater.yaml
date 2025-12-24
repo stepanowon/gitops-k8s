@@ -11,5 +11,5 @@ config:
       api_url: "http://192.168.56.103:8082"
       prefix:  "192.168.56.103:8082"
       ping: true
-      insecure: false
+      insecure: true
       credentials: "secret:argocd/nexus-cred"		# 형식 : "secret:네임스페이스/시크릿명"
