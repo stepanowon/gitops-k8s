@@ -4,7 +4,7 @@ kubectl get configmap kube-proxy -n kube-system -o yaml | \
   sed -e "s/strictARP: false/strictARP: true/" | kubectl apply -f - -n kube-system
 
 # yaml 파일을 이용해 metalLB 설치
-kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml
+kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.15.2/config/manifests/metallb-native.yaml
 
 # 설치된 metalLB 요소 확인. 모든 pod가 Running 상태가 되는 것을 확인
 $ kubectl get all -n metallb-system
