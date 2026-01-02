@@ -1,5 +1,5 @@
 # ingress nginx controller 설치
-kubectl apply -f https://raw.githubusercontent.com/Kubernetes/ingress-nginx/controller-v1.11.3/deploy/static/provider/baremetal/deploy.yaml
+kubectl apply -f https://raw.githubusercontent.com/Kubernetes/ingress-nginx/controller-v1.14.1/deploy/static/provider/baremetal/deploy.yaml
 
 # ingress-nginx-controller의 Service Type을 LoadBalancer로 변경
 kubectl -n ingress-nginx patch service ingress-nginx-controller -p '{"spec":{"type":"LoadBalancer"}}'
